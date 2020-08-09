@@ -43,7 +43,7 @@ jobs:
           profile-name: default
       - run:
           name: Deploy entire directory
-          command: aws s3 cp . s3://bb-reader-bucket/build --recursive
+          command: aws s3 cp . s3://bb-reader-bucket --recursive
       - slack/status:
           mentions: 'A018EEQR020'
           success_message: ':bb-dance::pet-bb-head::bb-begging: Circle BB job success!'
