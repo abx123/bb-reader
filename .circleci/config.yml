@@ -25,8 +25,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      - run: npm run lint
-      - run: npm run e2e
+      # - run: npm run lint
+      # - run: npm run e2e
       - run: npm run build
       # Persist entire project directory to the next job
       - persist_to_workspace:
