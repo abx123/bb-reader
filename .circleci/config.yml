@@ -31,8 +31,8 @@ jobs:
       - run: exit 0
       - slack/status:
           mentions: 'A018EEQR020'
-          success_message: '[${PROJECT_ENV_VAR}]:bb-dance::pet-bb-head::bb-begging: Circle BB build success!'
-          failure_message: '[${PROJECT_ENV_VAR}]:bb-no::bb-panggang-no-cry::bb-emo-bb-cry::bb-cry-till-flood: Circle BB build failed!'
+          success_message: '[${PROJECT_ENV_VAR}]Build success! :bb-dance::pet-bb-head::bb-begging:'
+          failure_message: '[${PROJECT_ENV_VAR}]Build failed! :bb-no::bb-panggang-no-cry::bb-emo-bb-cry::bb-cry-till-flood:'
 
   deploy:
     executor: aws-cli/default
@@ -46,8 +46,8 @@ jobs:
           command: aws s3 cp ./build s3://bb-reader-bucket --recursive
       - slack/status:
           mentions: 'A018EEQR020'
-          success_message: '[${PROJECT_ENV_VAR}]:bb-dance::pet-bb-head::bb-begging: Circle BB deploy success!'
-          failure_message: '[${PROJECT_ENV_VAR}]:bb-no::bb-panggang-no-cry::bb-emo-bb-cry::bb-cry-till-flood: Circle BB deploy failed!'
+          success_message: '[${PROJECT_ENV_VAR}]Deploy success! :bb-dance::pet-bb-head::bb-begging:'
+          failure_message: '[${PROJECT_ENV_VAR}]Deploy failed! :bb-no::bb-panggang-no-cry::bb-emo-bb-cry::bb-cry-till-flood:'
 workflows:
   version: 2
   build:
