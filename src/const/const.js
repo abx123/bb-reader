@@ -1,4 +1,4 @@
 export const Novel = {
-    'MGA': 'Martial God Asura',
-    'MYBWH ': 'My Youth Began With Him'
+    'MYBWH': 'My Youth Began With Him',
+    'MGA': 'Martial God Asura'
   }
