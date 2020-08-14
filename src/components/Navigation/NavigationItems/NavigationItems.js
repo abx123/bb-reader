@@ -28,7 +28,7 @@ const NavigationItems = props => {
 
     return (<ul className={classes.NavigationItems}>
         {novelList.map(novel => (
-            <NavigationItem link="/" exact>{Const.Novel[novel]}</NavigationItem>
+            <NavigationItem link={`/${novel}`} exact>{Const.Novel[novel]}</NavigationItem>
         ))}
 
     </ul>);
