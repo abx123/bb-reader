@@ -21,7 +21,6 @@ const Chapter = () => {
         }
         axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
             .then(response => {
-                let chapter = {}
                 console.log(response.data)
                 // for (var i = 0; i < response.data.length; i++) {
                 //     // console.log(response.data[i])
@@ -40,7 +39,7 @@ const Chapter = () => {
         // return () => {
         getData();
         // };
-    }, []);
+    });
 
 
 

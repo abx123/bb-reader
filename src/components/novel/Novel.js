@@ -41,7 +41,7 @@ const Novel = () => {
         // return () => {
         getData();
         // };
-    }, []);
+    });
 
     var divStyle = {
         color: 'white',
