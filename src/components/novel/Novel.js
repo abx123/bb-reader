@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useParams } from "react-router";
 import axios from 'axios';
 import classes from './Novel.css';
@@ -14,28 +14,48 @@ const Novel = () => {
 
     const [novelList, setNovelList] = useState([])
     const querystring = require("querystring");
+    const getData = useCallback(() => {
+        let qs = {
+            "action": Const.ListChapterAction,
+            "novel": novel
+        }
+        axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
+            .then(response => {
+                let novels = []
+                for (var i = 0; i < response.data.length; i++) {    
+                    novels.push(response.data[i])
+                }
+                setNovelList(novels)
+                console.log(novels)
+            })
+            .catch(err => {
+                console.log('err')
+            });
+      }, [novel, querystring]) 
+
+
 
     useEffect(() => {
-        const getData = () => {
-            let qs = {
-                "action": Const.ListChapterAction,
-                "novel": novel
-            }
-            axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
-                .then(response => {
-                    let novels = []
-                    for (var i = 0; i < response.data.length; i++) {    
-                        novels.push(response.data[i])
-                    }
-                    setNovelList(novels)
-                    console.log(novels)
-                })
-                .catch(err => {
-                    console.log('err')
-                });
-        };
+        // const getData = () => {
+        //     let qs = {
+        //         "action": Const.ListChapterAction,
+        //         "novel": novel
+        //     }
+        //     axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
+        //         .then(response => {
+        //             let novels = []
+        //             for (var i = 0; i < response.data.length; i++) {    
+        //                 novels.push(response.data[i])
+        //             }
+        //             setNovelList(novels)
+        //             console.log(novels)
+        //         })
+        //         .catch(err => {
+        //             console.log('err')
+        //         });
+        // };
         getData();
-    }, []);
+    }, [getData]);
 
     var divStyle = {
         color: 'white',
