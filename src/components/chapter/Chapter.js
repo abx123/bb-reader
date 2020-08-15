@@ -40,9 +40,7 @@ const Chapter = () => {
     //         });
     // };
 
-    useEffect(() => {
-        getData();
-    }, [getData]);
+    useEffect(getData(), [getData]);
     return (
         <div>
             <div>
