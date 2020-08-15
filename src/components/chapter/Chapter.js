@@ -24,9 +24,9 @@ const Chapter = () => {
                     console.log('err')
                 });
         };
-                getData();
-        
-    },[chapter, novel, querystring, getNovel]);
+        getData();
+
+    }, []);
     return (
         <div>
             <div>
