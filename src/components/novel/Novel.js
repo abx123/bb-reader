@@ -15,12 +15,11 @@ const Novel = () => {
     const [novelList, setNovelList] = useState([])
     const querystring = require("querystring");
 
-    const qs = {
-        "action": Const.ListChapterAction,
-        "novel": novel
-    }
-
-    useEffect(() => {
+    const getData = () => {
+        let qs = {
+            "action": Const.ListChapterAction,
+            "novel": novel
+        }
         axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
             .then(response => {
                 let novels = []
@@ -28,12 +27,15 @@ const Novel = () => {
                     novels.push(response.data[i])
                 }
                 setNovelList(novels)
-                console.log(novels)
             })
             .catch(err => {
                 console.log('err')
             });
-      }, []);
+    }
+    useEffect(getData,[novel]);
+
+
+
 
     var divStyle = {
         color: 'white',

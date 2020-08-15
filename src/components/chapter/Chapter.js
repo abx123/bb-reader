@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import * as Const from '../../const/const'
 import axios from 'axios';
@@ -7,8 +7,7 @@ const Chapter = () => {
     let { novel, chapter } = useParams();
     const [getNovel, setNovel] = useState({})
     const querystring = require("querystring");
-
-    const getData = useCallback(() => {
+    const getData = () => {
         let qs = {
             "action": Const.ChapterAction,
             "novel": novel,
@@ -16,32 +15,14 @@ const Chapter = () => {
         }
         axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
             .then(response => {
-                console.log(response.data)
                 setNovel(response.data)
             })
             .catch(err => {
                 console.log('err')
             });
-      }, [chapter, novel, querystring]) 
-
-    // const getData = () => {
-    //     let qs = {
-    //         "action": Const.ChapterAction,
-    //         "novel": novel,
-    //         "chapter": chapter,
-    //     }
-    //     axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
-    //         .then(response => {
-    //             console.log(response.data)
-    //             setNovel(response.data)
-    //         })
-    //         .catch(err => {
-    //             console.log('err')
-    //         });
-    // };
-
-    useEffect(getData(), [getData]);
-    return (
+      }
+      useEffect(getData,[novel, chapter]);
+      return (
         <div>
             <div>
                 NOVEL:{Const.Novel[novel]}
