@@ -33,11 +33,11 @@ const Novel = () => {
             .catch(err => {
                 console.log('err')
             });
-      }, [qs, querystring]);
+      }, []);
 
     var divStyle = {
         color: 'white',
-        backgroundColor: 'blue',
+        backgroundColor: 'red',
         WebkitTransition: 'all', // note the capital 'W' here
         msTransition: 'all' // 'ms' is the only lowercase vendor prefix
       };
