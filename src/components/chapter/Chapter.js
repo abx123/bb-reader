@@ -26,7 +26,7 @@ const Chapter = () => {
         };
                 getData();
         
-    },[chapter, novel, querystring]);
+    },[chapter, novel, querystring, getNovel]);
     return (
         <div>
             <div>
