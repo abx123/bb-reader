@@ -13,14 +13,15 @@ const Novel = () => {
     let { novel } = useParams();
 
     const [novelList, setNovelList] = useState([])
-    const querystring = require("querystring");
+    // const querystring = require("querystring");
 
     const getData = () => {
-        let qs = {
-            "action": Const.ListChapterAction,
-            "novel": novel
-        }
-        axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?' + querystring.stringify(qs))
+        // let qs = {
+        //     "action": Const.ListChapterAction,
+        //     "novel": novel
+        // }
+        // alert(`https://api.wmsam.dev/${novel}/chapters`)
+        axios.get(`https://api.wmsam.dev/${novel}/chapters`)
             .then(response => {
                 let novels = []
                 for (var i = 0; i < response.data.length; i++) {
@@ -32,17 +33,17 @@ const Novel = () => {
                 console.log('err')
             });
     }
-    useEffect(getData,[novel]);
+    useEffect(getData, [novel]);
 
 
 
 
     var divStyle = {
-        color: 'white',
-        backgroundColor: 'red',
+        color: 'black',
+        backgroundColor: '#8F5C2C',
         WebkitTransition: 'all', // note the capital 'W' here
         msTransition: 'all' // 'ms' is the only lowercase vendor prefix
-      };
+    };
     return (
         <div>
             <div>

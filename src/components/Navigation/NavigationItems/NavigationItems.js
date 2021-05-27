@@ -9,7 +9,7 @@ const NavigationItems = props => {
     const [novelList, setNovelList] = useState([])
 
     const getData = () => {
-        axios.get('https://9o16kbakc1.execute-api.ap-southeast-1.amazonaws.com/v1/lambda-api?action=LIST')
+        axios.get(`https://api.wmsam.dev/novels`)
             .then(response => {
                 let novels = []
                 for (var i = 0; i < response.data.length; i++) {
